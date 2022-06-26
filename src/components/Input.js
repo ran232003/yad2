@@ -16,7 +16,6 @@ const Input = (props) => {
     console.log(e.target.value);
     let value = e.target.value.trim();
     const valid = checkInput(lable, value);
-    console.log(valid, error);
     if (valid) {
       if (error.countError > 0) {
         setError(() => {
@@ -36,7 +35,6 @@ const Input = (props) => {
     props.handleInput({ valid, value }, fieldName);
   };
   const onInput = () => {
-    console.log("blur");
     if (input.valid === false) {
       setError(() => {
         return { isValid: true, countError: 1 };
@@ -47,7 +45,6 @@ const Input = (props) => {
       });
     }
   };
-  console.log(error);
   return (
     <div>
       <Form>

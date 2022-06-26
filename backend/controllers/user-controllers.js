@@ -4,7 +4,8 @@ const app = express();
 app.use(bodyParser.json());
 
 const addUser = (req, res, next) => {
-  console.log("check");
+  const user = req.body;
+  console.log("check", user);
   res.json({ res: "by" });
 };
 

@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import "./SignUp.css";
 import Headline from "../components/Headline";
 import Input from "../components/Input";
+import { addUser } from "../api/api";
 const SignUp = (props) => {
   const [inputs, setInputs] = useState({
     name: "",
@@ -16,8 +17,19 @@ const SignUp = (props) => {
   const test =
     "973904381117-45ognoieo8hqu6sk3us02poi78hk8mid.apps.googleusercontent.com";
   const handleInput = (input, fieldName) => {
-    let validString = "Valid";
-    console.log(fieldName);
+    let validString = fieldName + "Valid";
+    setInputs(() => {
+      return {
+        ...inputs,
+        [fieldName]: input.value,
+        [validString]: input.valid,
+      };
+    });
+  };
+  console.log(inputs);
+  const handleSubmit = () => {
+    const obj = { test: "test" };
+    addUser(obj);
   };
   return (
     <div className="allScreen">
@@ -52,7 +64,7 @@ const SignUp = (props) => {
           />
         </div>
         <div className="buttons-flex">
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="button" onClick={handleSubmit}>
             Submit
           </Button>
         </div>
