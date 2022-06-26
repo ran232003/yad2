@@ -1,0 +1,42 @@
+.allScreen{
+    width: 100%;
+    height: 1600px;
+    border-color: black;
+    border-style: solid;
+    background-color: #DBDFFD;
+    margin: auto;
+  
+}
+.signup{
+    
+         margin: 0 auto;
+        padding: 1rem;
+        width: 90%;
+        max-width: 50rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        border-radius: 6px;
+        background: white;
+        margin-top: 5px;
+      
+}
+.centerText{
+    text-align: center;
+}
+.inputs{
+    overflow-y: visible;
+    height: 100%;
+}
+.buttons-flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media screen and (max-width: 760px) {
+    .btn {
+        width: 120px;
+        
+    }
+    .google{
+        width: 120px; 
+    }
+  }
