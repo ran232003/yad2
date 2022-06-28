@@ -28,7 +28,11 @@ const SignUp = (props) => {
   };
   console.log(inputs);
   const handleSubmit = () => {
-    const obj = { test: "test" };
+    const obj = {
+      name: inputs.name,
+      password: inputs.password,
+      email: inputs.email,
+    };
     addUser(obj);
   };
   return (
