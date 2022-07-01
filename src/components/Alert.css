@@ -1,0 +1,12 @@
+.success {
+  background-color: #5fd068;
+}
+.danger {
+  background-color: red;
+  color: azure;
+  font-size: large;
+}
+.toast-container {
+  text-align: center;
+  margin: auto;
+}

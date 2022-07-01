@@ -2,15 +2,22 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import "./Headline.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 const Headline = (props) => {
   const navigate = useNavigate();
+
+  const user = useSelector((state) => {
+    return state.auth.user;
+  });
+  const link = user.eamil === "undefined" ? "/signup" : "/main";
   const handleStarted = (e) => {
     e.preventDefault();
-    navigate("/add-website");
+    navigate(link);
   };
+  console.log("link", link);
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/web-sites");
+    navigate("/login");
   };
   return (
     <div className="hero-container">
@@ -20,9 +27,11 @@ const Headline = (props) => {
         <Button className="btns" onClick={handleStarted}>
           GET STARTED
         </Button>
-        <Button variant="light" className="btns" onClick={handleLogin}>
-          Login <i className="far fa-play-circle" />
-        </Button>
+        {user === "undefined" ? (
+          <Button variant="light" className="btns" onClick={handleLogin}>
+            Login <i className="far fa-play-circle" />
+          </Button>
+        ) : null}
       </div>
     </div>
   );

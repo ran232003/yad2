@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-
+import { useDispatch } from "react-redux";
 import "./SignUp.css";
 import Headline from "../components/Headline";
 import Input from "../components/Input";
 import { addUser } from "../api/api";
+import Alert from "../components/Alert";
+import MyAlert from "../components/Alert";
+import { useNavigate } from "react-router-dom";
+import { authAction } from "../store/authSlice";
 const SignUp = (props) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [alertObject, setAlert] = useState({
+    lable: "",
+    showAlert: false,
+    cssClass: "",
+  });
   const [inputs, setInputs] = useState({
     name: "",
     nameValid: false,
@@ -26,14 +37,27 @@ const SignUp = (props) => {
       };
     });
   };
-  console.log(inputs);
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const obj = {
       name: inputs.name,
       password: inputs.password,
       email: inputs.email,
     };
-    addUser(obj);
+    const result = await addUser(obj);
+    if (result === "user added") {
+      dispatch(authAction.userInit(obj));
+      localStorage.setItem("user", JSON.stringify(obj));
+      setAlert(() => {
+        return { lable: result, cssClass: "success", showAlert: true };
+      });
+    } else {
+      setAlert(() => {
+        return { lable: result, cssClass: "danger", showAlert: true };
+      });
+    }
+  };
+  const handleNavigate = () => {
+    navigate("/main");
   };
   return (
     <div className="allScreen">
@@ -73,6 +97,11 @@ const SignUp = (props) => {
           </Button>
         </div>
       </div>
+      <MyAlert
+        handleNavigate={handleNavigate}
+        showObject={alertObject}
+        className="centerAlert"
+      />
     </div>
   );
 };
