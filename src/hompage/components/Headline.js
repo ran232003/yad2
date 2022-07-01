@@ -27,7 +27,7 @@ const Headline = (props) => {
         <Button className="btns" onClick={handleStarted}>
           GET STARTED
         </Button>
-        {user === "undefined" ? (
+        {Object.keys(user).length === 0 ? (
           <Button variant="light" className="btns" onClick={handleLogin}>
             Login <i className="far fa-play-circle" />
           </Button>

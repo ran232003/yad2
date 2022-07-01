@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux/es/exports";
 import MyModal from "./MyModal";
+import { logout } from "../storage/storage";
+import { authAction } from "../store/authSlice";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+
 //import "./NavigationBar.css"
 const NavigationBar = (props) => {
   const user = useSelector((state) => {
     return state.auth.user;
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   //const link = user.eamil !== "undefined" ? "/signup" : "/main";
   const HandleModal = () => {
@@ -15,8 +21,12 @@ const NavigationBar = (props) => {
   };
   const handleClose = () => {
     setShowModal(false);
+    logout();
+    dispatch(authAction.logOut());
+
+    navigate("/");
   };
-  console.log("in nav", showModal);
+  console.log(user, Object.keys(user).length === 0);
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -27,7 +37,7 @@ const NavigationBar = (props) => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
-            {user !== "undefined" ? (
+            {Object.keys(user).length !== 0 ? (
               <div>
                 <Nav onClick={HandleModal}>
                   <Nav.Link onClick={HandleModal}>LogOut</Nav.Link>
