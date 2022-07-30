@@ -13,7 +13,6 @@ const Input = (props) => {
     valid: false,
   });
   const handleInput = (e) => {
-    console.log(e.target.value);
     let value = e.target.value.trim();
     const valid = checkInput(lable, value);
     if (valid) {

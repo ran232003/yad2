@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import "./SignUp.css";
 import Headline from "../components/Headline";
 import Input from "../components/Input";
-import { addUser } from "../api/api";
+import { addUser, login } from "../api/api";
 import Alert from "../components/Alert";
 import MyAlert from "../components/Alert";
 import { useNavigate } from "react-router-dom";
@@ -37,12 +37,11 @@ const Login = (props) => {
   };
   const handleSubmit = async () => {
     const obj = {
-      name: inputs.name,
       password: inputs.password,
       email: inputs.email,
     };
-    const result = await addUser(obj);
-    if (result === "user added") {
+    const result = await login(obj);
+    if (result === "User Exist") {
       dispatch(authAction.userInit(obj));
       localStorage.setItem("user", JSON.stringify(obj));
       setAlert(() => {
@@ -61,7 +60,7 @@ const Login = (props) => {
     <div className="allScreen">
       <div className="signup">
         <div className="centerText">
-          <Headline lable="Sign Up" />
+          <Headline lable="Login" />
         </div>
         <div className="inputs">
           <Input

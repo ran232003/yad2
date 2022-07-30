@@ -20,12 +20,24 @@ const addUser = async (req, res, next) => {
     //
     return res.json({ message: "error" });
   }
+};
 
-  //const userDb = await User.find({ email: user.email });
-  console.log("check", user);
-  // res.json({ res: "by" });
+const login = async (req, res, next) => {
+  const user = req.body;
+  console.log(user);
+  const checkUser = await User.findOne({
+    email: user.email,
+    password: user.password,
+  });
+  console.log(checkUser);
+  if (checkUser === null) {
+    return res.json({ message: "User Not Exist" });
+  } else {
+    return res.json({ message: "User Exist" });
+  }
 };
 
 module.exports = {
   addUser: addUser,
+  login: login,
 };

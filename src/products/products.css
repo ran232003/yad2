@@ -1,0 +1,12 @@
+.items {
+  /* margin: 0 auto; */
+  margin-left: 5px;
+  padding: 1rem;
+  width: 50%;
+  max-width: 50rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 6px;
+  background: white;
+  margin-top: 5px;
+  display: flex;
+}

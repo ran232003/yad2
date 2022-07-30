@@ -8,6 +8,12 @@ import SignUp from "./auth/Signup";
 import MainPage from "./main-page/MainPage";
 import { useDispatch } from "react-redux";
 import { authAction } from "./store/authSlice";
+import Login from "./auth/Login";
+import AddItem from "./add-items/AddItem";
+import Location from "./location/Location";
+import SearchLocation from "./location/SearchLocation";
+import Products from "./products/products";
+import Cart from "./cart/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +33,11 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/main" element={<MainPage />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/add-item" element={<AddItem />}></Route>
+        <Route path="/products" element={<Products />}></Route>
+        <Route path="/search-location" element={<SearchLocation />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
       </Routes>
     </div>
   );

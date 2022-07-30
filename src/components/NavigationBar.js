@@ -39,8 +39,20 @@ const NavigationBar = (props) => {
             <Nav className="me-auto"></Nav>
             {Object.keys(user).length !== 0 ? (
               <div>
-                <Nav onClick={HandleModal}>
+                <Nav>
                   <Nav.Link onClick={HandleModal}>LogOut</Nav.Link>
+                  <Nav.Link as={Link} to="/add-item">
+                    Add Item
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/products">
+                    Products
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/cart">
+                    Cart
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/search-location">
+                    Search Location
+                  </Nav.Link>
                 </Nav>
               </div>
             ) : (

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const AuthSlice = createSlice({
   name: "user",
-  initialState: { user: {} },
+  initialState: { user: {}, location: {} },
   reducers: {
     userInit(state, action) {
       console.log("in slice init");
@@ -9,6 +9,9 @@ const AuthSlice = createSlice({
     },
     logOut(state) {
       state.user = {};
+    },
+    myLocation(state, action) {
+      state.location = action.payload;
     },
   },
 });

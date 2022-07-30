@@ -9,12 +9,11 @@ const Headline = (props) => {
   const user = useSelector((state) => {
     return state.auth.user;
   });
-  const link = user.eamil === "undefined" ? "/signup" : "/main";
+  const link = Object.keys(user).length === 0 ? "/signup" : "/main";
   const handleStarted = (e) => {
     e.preventDefault();
     navigate(link);
   };
-  console.log("link", link);
   const handleLogin = (e) => {
     e.preventDefault();
     navigate("/login");
